@@ -3,26 +3,26 @@ import styles from "./Header.module.scss";
 function Header() {
   return (
     <div className={styles.wrapper}>
-      <header className="d-flex justify-between align-center p-40 clear">
-        <div className="d-flex align-center">
-          <img width={40} height={40} src="img/logo.png" alt="Logotype" />
+      <header className={styles.header}>
+        <div className={styles.left_side}>
+          <img width={40} height={40} src="img/logo.png" alt="Logo" />
           <div>
-            <h3 className="text-uppercase">React Sneakers</h3>
-            <p className="opacity-5">Магазин лучших кроссовок</p>
+            <h3>React Sneakers</h3>
+            <p>Магазин лучших кроссовок</p>
           </div>
         </div>
-        <ul className="d-flex">
-          <li className="mr-30 cu-p">
-            <img width={18} height={18} src="img/cart.svg" alt="Корзина" />
+        <div className={styles.right_side}>
+          <div className="mr-30 ">
+            <img width={18} height={18} src="img/cart.svg" alt="basket" />
             <span>1200 руб.</span>
-          </li>
-          <li className="mr-20 cu-p">
-            <img width={18} height={18} src="img/heart.svg" alt="Закладки" />
-          </li>
-          <li>
-            <img width={18} height={18} src="img/user.svg" alt="Пользователь" />
-          </li>
-        </ul>
+          </div>
+          <div className="mr-20 ">
+            <img width={18} height={18} src="img/heart.svg" alt="favourites" />
+          </div>
+          <div>
+            <img width={18} height={18} src="img/user.svg" alt="user-profile" />
+          </div>
+        </div>
       </header>
     </div>
   );

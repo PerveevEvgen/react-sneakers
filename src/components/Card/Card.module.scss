@@ -6,20 +6,24 @@
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
   position: relative;
   display: inline-block;
+  background-color: rgb(255, 255, 255);
 
   &:hover {
     box-shadow: 0px 20px 35px rgba(0, 0, 0, 0.06);
     transform: translateY(-5px);
   }
 
-  span {
-    font-size: 13px;
-    opacity: 0.5;
-    text-transform: uppercase;
-  }
-
-  b {
-    font-size: 14px;
+  .price {
+    display: inline-flex;
+    flex-direction: column;
+    b {
+      font-size: 14px;
+    }
+    span {
+      font-size: 13px;
+      opacity: 0.5;
+      text-transform: uppercase;
+    }
   }
 
   h5 {
@@ -28,23 +32,19 @@
   }
 
   .heart {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  cursor: pointer;
-  &:hover {
-    width: 36px;
-    height: 36px;
-   }
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
   }
   .plus_btn {
     position: absolute;
     right: 25px;
     bottom: 30px;
+    cursor: pointer;
   }
-  .card_img{
+  .card_img {
     display: block;
     margin: 0 auto;
   }
 }
-

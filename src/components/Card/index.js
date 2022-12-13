@@ -16,18 +16,18 @@ function Card({ imageUrl }) {
         className={styles.card_img}
       />
       <h5>Sneakers</h5>
-      <div className="d-flex justify-between align-center">
-        <div className="d-flex flex-column">
-          <span>Цена:</span>
-          <b>6448 руб.</b>
-          <img
-            width={32}
-            className={styles.plus_btn}
-            src="/img/plus.svg"
-            alt="add-to-cart-icon"
-          />
-        </div>
+
+      <div className={styles.price}>
+        <span>Цена:</span>
+        <b>6448 руб.</b>
       </div>
+
+      <img
+        width={32}
+        className={styles.plus_btn}
+        src="/img/plus.svg"
+        alt="add-icon"
+      />
     </div>
   );
 }
