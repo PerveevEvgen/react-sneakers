@@ -1,0 +1,131 @@
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.1s ease-out, visibility 0.1s ease-out;
+}
+
+.overlayVisible {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  transition: opacity 0.1s ease-out, visibility 0.1s ease-out;
+
+  .drawer {
+    transform: translateX(0);
+  }
+}
+
+.drawer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 460px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  background: #ffffff;
+  box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  padding-top: 70px;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-out;
+
+  .basket_header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    h2 {
+      margin: 0;
+      display: block;
+    }
+    img {
+      display: block;
+    }
+  }
+  .basket_item_cont {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 13px;
+    flex: 1;
+    .basket_item {
+      display: inline-flex;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid #f3f3f3;
+      border-radius: 20px;
+      padding: 15px;
+      width: 250px;
+      justify-content: center;
+      .img_wrapper {
+        display: block;
+        margin-right: 15px;
+      }
+      .text_wrapper {
+        .product_name {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 17px;
+          color: #000000;
+          margin: 0;
+        }
+        .product_price {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 700;
+          font-size: 14px;
+          line-height: 17px;
+          color: #000000;
+          margin: 0;
+        }
+      }
+      .btn_wrapper {
+        display: block;
+        margin-left: 20px;
+        .btn_remove {
+          opacity: 0.5;
+          &:hover {
+            opacity: 1;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .basket_total {
+    div {
+      flex: 1;
+    }
+    .greenButton {
+      width: 325px;
+      height: 55px;
+      background: #9dd558;
+      border-radius: 18px;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 19px;
+      text-align: center;
+      margin-top: 40px;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
