@@ -1,6 +1,6 @@
 import styles from "./Card.module.scss";
 
-function Card({ imageUrl }) {
+function Card({ imageUrl, name,price }) {
   return (
     <div className={styles.card}>
       <img
@@ -15,11 +15,11 @@ function Card({ imageUrl }) {
         alt="Sneakers"
         className={styles.card_img}
       />
-      <h5>Sneakers</h5>
+      <h5>{name}</h5>
 
       <div className={styles.price}>
         <span>Цена:</span>
-        <b>6448 руб.</b>
+        <b>{`${price} руб.`}</b>
       </div>
 
       <img

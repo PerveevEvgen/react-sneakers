@@ -4,7 +4,14 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 }
-.App{
+.App {
   background-color: rgb(216, 250, 250);
   padding: 40px;
+  height: 91vh;
+}
+
+.wrapper {
+  background-color: rgb(255, 255, 255);
+  border-radius: 30px;
+
 }
