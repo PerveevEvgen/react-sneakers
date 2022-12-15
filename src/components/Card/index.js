@@ -1,11 +1,25 @@
 import styles from "./Card.module.scss";
+import React from "react";
+import { useState } from "react";
 
-function Card({ imageUrl, name,price }) {
+function Card({ imageUrl, name, price }) {
+  const [favAdded, setFavAdded] = React.useState(false);
+  const [basketAdded, setBasketAdded] = React.useState(false);
+
+  function onClickHeart() {
+    setFavAdded(!favAdded);
+  }
+
+  function onClickPlus() {
+    setBasketAdded(!basketAdded);
+  }
+
   return (
     <div className={styles.card}>
       <img
+        onClick={onClickHeart}
         className={styles.heart}
-        src="/img/unliked-heart.svg"
+        src={favAdded ? "/img/liked.svg" : "/img/unliked-heart.svg"}
         alt="unliked-heart"
       />
       <img
@@ -23,9 +37,10 @@ function Card({ imageUrl, name,price }) {
       </div>
 
       <img
+        onClick={onClickPlus}
         width={32}
         className={styles.plus_btn}
-        src="/img/plus.svg"
+        src={basketAdded ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
         alt="add-icon"
       />
     </div>

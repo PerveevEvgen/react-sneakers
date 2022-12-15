@@ -2,7 +2,7 @@ import styles from "./Basket.module.scss";
 
 function Basket() {
   return (
-    <div className={styles.overlayVisible}>
+    <div className={styles.overlay}>
       <div className={styles.drawer}>
         <div className={styles.basket_header}>
           <h2>Корзина</h2>

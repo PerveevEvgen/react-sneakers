@@ -15,8 +15,7 @@ function App() {
       <div className="wrapper">
         <Basket />
         <Header />
-        <div className="cards_container d-if">
-          {/* <Card imageUrl="/img/sneakers/1.jpg" /> */}
+        <div className="cards_container d-flex flex-wrap justify-around">
           {arr.map((item, index) => {
             return (
               <Card
