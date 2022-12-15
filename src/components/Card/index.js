@@ -3,8 +3,8 @@ import React from "react";
 import { useState } from "react";
 
 function Card({ imageUrl, name, price }) {
-  const [favAdded, setFavAdded] = React.useState(false);
-  const [basketAdded, setBasketAdded] = React.useState(false);
+  const [favAdded, setFavAdded] = useState(false);
+  const [basketAdded, setBasketAdded] = useState(false);
 
   function onClickHeart() {
     setFavAdded(!favAdded);
