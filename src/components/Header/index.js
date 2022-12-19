@@ -1,6 +1,6 @@
 import styles from "./Header.module.scss";
 
-function Header() {
+function Header({ onBasketClick }) {
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
@@ -12,7 +12,7 @@ function Header() {
           </div>
         </div>
         <div className={styles.right_side}>
-          <div className="mr-30 ">
+          <div className="mr-30 cu-p" onClick={onBasketClick}>
             <img width={18} height={18} src="img/cart.svg" alt="basket" />
             <span>1200 руб.</span>
           </div>

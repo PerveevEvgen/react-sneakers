@@ -1,12 +1,20 @@
 import styles from "./Basket.module.scss";
+import React, { useContext } from "react";
+import { basketContext } from "./../../App";
 
-function Basket() {
+function Basket({ closeBasket }) {
+  const isOpened = useContext(basketContext);
   return (
-    <div className={styles.overlay}>
+    <div className={isOpened ? styles.overlayVisible : styles.overlay}>
       <div className={styles.drawer}>
         <div className={styles.basket_header}>
           <h2>Корзина</h2>
-          <img className="cu-p" src="img/btn-remove.svg" alt="Close" />
+          <img
+            onClick={closeBasket}
+            className="cu-p"
+            src="img/btn-remove.svg"
+            alt="Close"
+          />
         </div>
 
         <div className={styles.basket_item_cont}>
