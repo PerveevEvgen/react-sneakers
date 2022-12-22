@@ -24,6 +24,13 @@ function App() {
           <Basket />
           <Header />
         </BasketProvider>
+        <div className="sub_header d-flex justify-between align-center">
+          <h1>Все кроссовки</h1>
+          <div className="search_container">
+            <img src="/img/search.svg" alt="search-icon"></img>
+            <input placeholder="Поиск..."></input>
+          </div>
+        </div>
         <div className="cards_container d-flex flex-wrap justify-around">
           {items.map((item, index) => {
             return (
