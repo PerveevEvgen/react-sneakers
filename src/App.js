@@ -13,12 +13,12 @@ const arr = [
 export const basketContext = React.createContext();
 
 function App() {
-  const [basketOpend, setBasketOpened] = React.useState(false);
+  const [basketState, setBasketState] = React.useState(false);
   const openBasket = function () {
-    setBasketOpened(!basketOpend);
+    setBasketState(!basketState);
   };
   return (
-    <basketContext.Provider value={basketOpend}>
+    <basketContext.Provider value={basketState}>
       <div className="App clear">
         <div className="wrapper">
           <Basket closeBasket={openBasket} />
