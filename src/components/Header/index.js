@@ -1,6 +1,8 @@
 import styles from "./Header.module.scss";
+import { useBasketContext } from "./../Basket/basketContext";
 
-function Header({ onBasketClick }) {
+function Header() {
+  const { basketToggle } = useBasketContext();
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
@@ -12,7 +14,7 @@ function Header({ onBasketClick }) {
           </div>
         </div>
         <div className={styles.right_side}>
-          <div className="mr-30 cu-p" onClick={onBasketClick}>
+          <div className="mr-30 cu-p" onClick={basketToggle}>
             <img width={18} height={18} src="img/cart.svg" alt="basket" />
             <span>1200 руб.</span>
           </div>
