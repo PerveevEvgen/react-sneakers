@@ -29,7 +29,10 @@ body {
 
 .search_container {
   margin-right: 40px;
+  position: relative;
   input {
+    width: 250px;
+    height: 45px;
     font-family: "Inter";
     font-style: normal;
     font-weight: 400;
@@ -38,5 +41,13 @@ body {
     color: #c4c4c4;
     border: 1px solid #c4c4c4;
     border-radius: 6px;
+  }
+  .btn_remove_text{
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    top: 12px;
+    cursor: pointer;
   }
 }
