@@ -2,7 +2,7 @@ import styles from "./Card.module.scss";
 import React from "react";
 import { useState } from "react";
 
-function Card({ imageUrl, name, price }) {
+function Card({ imageUrl, name, price, onPlus }) {
   const [favAdded, setFavAdded] = useState(false);
   const [basketAdded, setBasketAdded] = useState(false);
 
@@ -12,6 +12,7 @@ function Card({ imageUrl, name, price }) {
 
   function onClickPlus() {
     setBasketAdded(!basketAdded);
+    onPlus({ imageUrl, name, price });
   }
 
   return (

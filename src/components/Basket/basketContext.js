@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 
-export const BasketContext = React.createContext();
+const BasketContext = React.createContext();
 
 export const useBasketContext = () => {
   return useContext(BasketContext);

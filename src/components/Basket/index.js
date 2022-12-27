@@ -1,7 +1,7 @@
 import styles from "./Basket.module.scss";
 import { useBasketContext } from "./basketContext";
 
-function Basket() {
+function Basket({ items = [] }) {
   const { visible, basketToggle } = useBasketContext();
   return (
     <div className={visible ? styles.overlayVisible : styles.overlay}>
@@ -17,54 +17,26 @@ function Basket() {
         </div>
 
         <div className={styles.basket_item_cont}>
-          <div className={styles.basket_item}>
-            <div className={styles.img_wrapper}>
-              <img width={70} src="/img/sneakers/2.jpg" alt="product-img" />
-            </div>
-            <div className={styles.text_wrapper}>
-              <h4 className={styles.product_name}>Sneakers cool</h4>
-              <p className={styles.product_price}>1200 ua</p>
-            </div>
-            <div className={styles.btn_wrapper}>
-              <img
-                className={styles.btn_remove}
-                src="img/btn-remove.svg"
-                alt="btn-remove"
-              ></img>
-            </div>
-          </div>
-          <div className={styles.basket_item}>
-            <div className={styles.img_wrapper}>
-              <img width={70} src="/img/sneakers/2.jpg" alt="product-img" />
-            </div>
-            <div className={styles.text_wrapper}>
-              <h4 className={styles.product_name}>Sneakers cool</h4>
-              <p className={styles.product_price}>1200 ua</p>
-            </div>
-            <div className={styles.btn_wrapper}>
-              <img
-                className={styles.btn_remove}
-                src="img/btn-remove.svg"
-                alt="btn-remove"
-              ></img>
-            </div>
-          </div>
-          <div className={styles.basket_item}>
-            <div className={styles.img_wrapper}>
-              <img width={70} src="/img/sneakers/2.jpg" alt="product-img" />
-            </div>
-            <div className={styles.text_wrapper}>
-              <h4 className={styles.product_name}>Sneakers cool</h4>
-              <p className={styles.product_price}>1200 ua</p>
-            </div>
-            <div className={styles.btn_wrapper}>
-              <img
-                className={styles.btn_remove}
-                src="img/btn-remove.svg"
-                alt="btn-remove"
-              ></img>
-            </div>
-          </div>
+          {items.map((item) => {
+            return (
+              <div className={styles.basket_item}>
+                <div className={styles.img_wrapper}>
+                  <img width={70} src={item.imageUrl} alt="product-img" />
+                </div>
+                <div className={styles.text_wrapper}>
+                  <h4 className={styles.product_name}>{item.name}</h4>
+                  <p className={styles.product_price}>{item.price} .руб</p>
+                </div>
+                <div className={styles.btn_wrapper}>
+                  <img
+                    className={styles.btn_remove}
+                    src="img/btn-remove.svg"
+                    alt="btn-remove"
+                  ></img>
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         <div className={styles.basket_total}>

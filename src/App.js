@@ -6,6 +6,7 @@ import { BasketProvider } from "./components/Basket/basketContext";
 
 function App() {
   const [items, setItems] = React.useState([]);
+  const [basketItems, setBasketItems] = React.useState([]);
 
   React.useEffect(() => {
     fetch("https://63a492ae2a73744b007b9672.mockapi.io/items")
@@ -17,11 +18,16 @@ function App() {
       });
   }, []);
 
+  const addToBasket = (newItem) => {
+    setBasketItems((prevItem) => [...prevItem, newItem]);
+  };
+
+
   return (
     <div className="App clear">
       <div className="wrapper">
         <BasketProvider>
-          <Basket />
+          <Basket items={basketItems} />
           <Header />
         </BasketProvider>
         <div className="sub_header d-flex justify-between align-center">
@@ -35,9 +41,14 @@ function App() {
           {items.map((item, index) => {
             return (
               <Card
-                imageUrl={`/img/sneakers/${index + 1}.jpg`}
+                key={index}
+                imageUrl={item.path}
                 name={item.name}
                 price={item.price}
+                itemData={item}
+                onPlus={(itemData) => {
+                  addToBasket(itemData);
+                }}
               />
             );
           })}
