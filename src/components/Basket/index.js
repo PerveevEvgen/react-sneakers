@@ -1,7 +1,7 @@
 import styles from "./Basket.module.scss";
 import { useBasketContext } from "./basketContext";
 
-function Basket({ items = [] }) {
+function Basket({ items = [], onRemove}) {
   const { visible, basketToggle } = useBasketContext();
   return (
     <div className={visible ? styles.overlayVisible : styles.overlay}>
@@ -29,6 +29,7 @@ function Basket({ items = [] }) {
                 </div>
                 <div className={styles.btn_wrapper}>
                   <img
+                    onClick={() => {onRemove(item.id);}}
                     className={styles.btn_remove}
                     src="img/btn-remove.svg"
                     alt="btn-remove"

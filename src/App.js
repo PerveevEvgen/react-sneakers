@@ -11,21 +11,32 @@ function App() {
   const [searchValue, setSearchValue] = React.useState("");
 
   React.useEffect(() => {
-    fetch("https://63a492ae2a73744b007b9672.mockapi.io/items")
-      .then((fetchRes) => {
-        return fetchRes.json();
-      })
-      .then((data) => {
-        setItems(data);
+    axios
+      .get("https://63a492ae2a73744b007b9672.mockapi.io/items")
+      .then((res) => {
+        setItems(res.data);
+      });
+    axios
+      .get("https://63a492ae2a73744b007b9672.mockapi.io/basketItems")
+      .then((res) => {
+        setBasketItems(res.data);
       });
   }, []);
 
   const addToBasket = (newItem) => {
+    axios.post(
+      "https://63a492ae2a73744b007b9672.mockapi.io/basketItems",
+      newItem
+    );
     setBasketItems((prevItem) => [...prevItem, newItem]);
   };
 
+  const removeFromBasket = (id) => {
+    console.log(id)
+    setBasketItems((prev) => prev.filter(item => item.id !== id))
+  }
+
   const onChangeSearchValue = (event) => {
-    console.log(event.target.value);
     setSearchValue(event.target.value);
   };
 
@@ -33,7 +44,7 @@ function App() {
     <div className="App clear">
       <div className="wrapper">
         <BasketProvider>
-          <Basket items={basketItems} />
+          <Basket items={basketItems} onRemove={removeFromBasket} />
           <Header />
         </BasketProvider>
         <div className="sub_header d-flex justify-between align-center">
