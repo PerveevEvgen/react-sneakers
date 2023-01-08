@@ -1,6 +1,8 @@
 import Header from "./components/Header";
-import Card from "./components/Card";
+import Home from "./pages/Home";
+import Favorites from "./pages/Favorites";
 import Basket from "./components/Basket";
+import { Route, Link, Routes, BrowserRouter as Router } from "react-router-dom";
 import React from "react";
 import { BasketProvider } from "./components/Basket/basketContext";
 import axios from "axios";
@@ -9,6 +11,7 @@ function App() {
   const [items, setItems] = React.useState([]);
   const [basketItems, setBasketItems] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
+  const [favorites, setFavorites] = React.useState([]);
 
   React.useEffect(() => {
     axios
@@ -21,6 +24,10 @@ function App() {
       .then((res) => {
         setBasketItems(res.data);
       });
+    axios.get('https://63a492ae2a73744b007b9672.mockapi.io/favourites')
+      .then((res) => {
+      setFavorites(res.data);
+    })
   }, []);
 
   const addToBasket = (newItem) => {
@@ -31,69 +38,56 @@ function App() {
     setBasketItems((prevItem) => [...prevItem, newItem]);
   };
 
+  const addToFavorites = (newItem) => {
+    axios.post(
+      "https://63a492ae2a73744b007b9672.mockapi.io/favourites",
+      newItem
+    );
+    setFavorites((prevItem) => [...prevItem, newItem]);
+  };
+
   const removeFromBasket = (id) => {
-    console.log(id)
-    setBasketItems((prev) => prev.filter(item => item.id !== id))
-  }
+    axios.delete(
+      `https://63a492ae2a73744b007b9672.mockapi.io/basketItems/${id}`
+    );
+    setBasketItems((prev) => prev.filter((item) => item.id !== id));
+  };
 
   const onChangeSearchValue = (event) => {
     setSearchValue(event.target.value);
   };
 
   return (
-    <div className="App clear">
-      <div className="wrapper">
-        <BasketProvider>
-          <Basket items={basketItems} onRemove={removeFromBasket} />
-          <Header />
-        </BasketProvider>
-        <div className="sub_header d-flex justify-between align-center">
-          <h1>
-            {searchValue
-              ? `Поиск по запросу:"${searchValue}"`
-              : " Все кроссовки"}
-          </h1>
-          <div className="search_container">
-            <img src="/img/search.svg" alt="search-icon"></img>
-            <input
-              value={searchValue}
-              onChange={onChangeSearchValue}
-              placeholder="Поиск..."
-            ></input>
-            {searchValue && (
-              <img
-                onClick={() => {
-                  setSearchValue("");
-                }}
-                className="clear btn_remove_text"
-                src="img/btn-remove.svg"
-                alt="btn-remove"
-              ></img>
-            )}
-          </div>
-        </div>
-        <div className="cards_container d-flex flex-wrap justify-around">
-          {items
-            .filter((item) =>
-              item.name.toLowerCase().includes(searchValue.toLowerCase())
-            )
-            .map((item, index) => {
-              return (
-                <Card
-                  key={index}
-                  imageUrl={item.path}
-                  name={item.name}
-                  price={item.price}
-                  itemData={item}
-                  onPlus={(itemData) => {
-                    addToBasket(itemData);
-                  }}
-                />
-              );
-            })}
+    <Router>
+      <div className="App clear">
+        <div className="wrapper">
+          <BasketProvider>
+            <Basket items={basketItems} onRemove={removeFromBasket} />
+            <Header />
+          </BasketProvider>
+
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Home
+                  items={items}
+                  searchValue={searchValue}
+                  setSearchValue={setSearchValue}
+                  addToBasket={addToBasket}
+                  addToFavorites={addToFavorites}
+                  onChangeSearchValue={onChangeSearchValue}
+                ></Home>
+              }
+            ></Route>
+            <Route
+              path="favorites"
+              element={<Favorites items={favorites} setFavorites={setFavorites}></Favorites>}
+            ></Route>
+          </Routes>
         </div>
       </div>
-    </div>
+    </Router>
   );
 }
 
