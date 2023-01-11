@@ -33,16 +33,20 @@ function App() {
   }, []);
 
   const addToBasket = async (newItem) => {
+    console.log(basketItems)
+    console.log(newItem);
     try {
       if (basketItems.find((item) => Number(item.id) === Number(newItem.id))) {
+        console.log(true)
         setBasketItems((prevItem) =>
-          prevItem.filter((item) => item.id !== newItem.id)
+          prevItem.filter((item) => Number(item.id) !== Number(newItem.id))
         );
         axios.delete(
           `https://63a492ae2a73744b007b9672.mockapi.io/basketItems/${newItem.id}`,
           newItem
         );
       } else {
+        console.log(false);
         const { data } = await axios.post(
           "https://63a492ae2a73744b007b9672.mockapi.io/basketItems",
           newItem

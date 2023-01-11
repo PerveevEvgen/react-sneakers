@@ -43,14 +43,14 @@ function Home({
               <Card
                 key={index}
                 imageUrl={item.path}
+                id={item.id}
                 name={item.name}
                 price={item.price}
-                itemData={item}
-                onPlus={(itemData) => {
-                  addToBasket(itemData);
+                onPlus={(item) => {
+                  addToBasket(item);
                 }}
-                onFavorite={(itemData) => {
-                  addToFavorites(itemData);
+                onFavorite={(item) => {
+                  addToFavorites(item);
                 }}
                 added={false}
               />
