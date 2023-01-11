@@ -52,6 +52,7 @@ function Home({
                 onFavorite={(itemData) => {
                   addToFavorites(itemData);
                 }}
+                added={false}
               />
             );
           })}

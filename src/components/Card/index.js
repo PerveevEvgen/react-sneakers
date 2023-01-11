@@ -2,18 +2,18 @@ import styles from "./Card.module.scss";
 import React from "react";
 import { useState } from "react";
 
-function Card({ imageUrl, name, price, onPlus, onFavorite }) {
-  const [favAdded, setFavAdded] = useState(false);
-  const [basketAdded, setBasketAdded] = useState(false);
+function Card({ id, imageUrl, name, price, onPlus, onFavorite, favorited = false, added = false }) {
+  const [favAdded, setFavAdded] = useState(favorited);
+  const [basketAdded, setBasketAdded] = useState(added);
 
   function onClickHeart() {
     setFavAdded(!favAdded);
-    onFavorite({ imageUrl, name, price });
+    onFavorite({id, imageUrl, name, price });
   }
 
   function onClickPlus() {
     setBasketAdded(!basketAdded);
-    onPlus({ imageUrl, name, price });
+    onPlus({id, imageUrl, name, price });
   }
 
   return (
