@@ -7,6 +7,7 @@ function Home({
   addToBasket,
   addToFavorites,
   onChangeSearchValue,
+  basketItems,
 }) {
   return (
     <>
@@ -52,7 +53,9 @@ function Home({
                 onFavorite={(item) => {
                   addToFavorites(item);
                 }}
-                added={false}
+                added={basketItems.some(
+                  (obj) => Number(obj.id) === Number(item.id)
+                )}
               />
             );
           })}

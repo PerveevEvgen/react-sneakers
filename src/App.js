@@ -33,11 +33,11 @@ function App() {
   }, []);
 
   const addToBasket = async (newItem) => {
-    console.log(basketItems)
+    console.log(basketItems);
     console.log(newItem);
     try {
       if (basketItems.find((item) => Number(item.id) === Number(newItem.id))) {
-        console.log(true)
+        console.log(true);
         setBasketItems((prevItem) =>
           prevItem.filter((item) => Number(item.id) !== Number(newItem.id))
         );
@@ -112,6 +112,7 @@ function App() {
                   addToBasket={addToBasket}
                   addToFavorites={addToFavorites}
                   onChangeSearchValue={onChangeSearchValue}
+                  basketItems={basketItems}
                 ></Home>
               }
             ></Route>
