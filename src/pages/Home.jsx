@@ -8,7 +8,31 @@ function Home({
   addToFavorites,
   onChangeSearchValue,
   basketItems,
+  isLoading,
 }) {
+  const renderItems = () => {
+    const filteredItems = items.filter((item) =>
+      item.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    return filteredItems.map((item, index) => {
+      return (
+        <Card
+          key={index}
+          imageUrl={item.path}
+          id={item.id}
+          name={item.name}
+          price={item.price}
+          onPlus={(item) => {
+            addToBasket(item);
+          }}
+          onFavorite={(item) => {
+            addToFavorites(item);
+          }}
+          added={basketItems.some((obj) => Number(obj.id) === Number(item.id))}
+        />
+      );
+    });
+  };
   return (
     <>
       <div className="sub_header d-flex justify-between align-center">
@@ -35,30 +59,7 @@ function Home({
         </div>
       </div>
       <div className="cards_container d-flex flex-wrap justify-around">
-        {items
-          .filter((item) =>
-            item.name.toLowerCase().includes(searchValue.toLowerCase())
-          )
-          .map((item, index) => {
-            return (
-              <Card
-                key={index}
-                imageUrl={item.path}
-                id={item.id}
-                name={item.name}
-                price={item.price}
-                onPlus={(item) => {
-                  addToBasket(item);
-                }}
-                onFavorite={(item) => {
-                  addToFavorites(item);
-                }}
-                added={basketItems.some(
-                  (obj) => Number(obj.id) === Number(item.id)
-                )}
-              />
-            );
-          })}
+        {renderItems()}
       </div>
     </>
   );
