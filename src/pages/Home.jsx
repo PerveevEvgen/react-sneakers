@@ -14,14 +14,12 @@ function Home({
     const filteredItems = items.filter((item) =>
       item.name.toLowerCase().includes(searchValue.toLowerCase())
     );
-    return filteredItems.map((item, index) => {
+    return (isLoading ? [...Array(10)] : filteredItems).map((item, index) => {
       return (
         <Card
           key={index}
-          imageUrl={item.path}
-          id={item.id}
-          name={item.name}
-          price={item.price}
+          loading={isLoading}
+          {...item}
           onPlus={(item) => {
             addToBasket(item);
           }}
@@ -33,6 +31,7 @@ function Home({
       );
     });
   };
+
   return (
     <>
       <div className="sub_header d-flex justify-between align-center">
