@@ -7,13 +7,14 @@ import React from "react";
 import { BasketProvider } from "./components/Basket/basketContext";
 import axios from "axios";
 
+export const AppContext = React.createContext({});
 
 function App() {
   const [items, setItems] = React.useState([]);
   const [basketItems, setBasketItems] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
   const [favorites, setFavorites] = React.useState([]);
-  const[isLoading, setIsLoading] =React.useState(true)
+  const [isLoading, setIsLoading] = React.useState(true);
 
   React.useEffect(() => {
     async function fetchData() {
@@ -26,7 +27,7 @@ function App() {
       const favoritesResponse = await axios.get(
         "https://63a492ae2a73744b007b9672.mockapi.io/favourites"
       );
-      setIsLoading(false)
+      setIsLoading(false);
       setBasketItems(basketResponse.data);
       setFavorites(favoritesResponse.data);
       setItems(itemsResponse.data);
@@ -96,43 +97,42 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="App clear">
-        <div className="wrapper">
-          <BasketProvider>
-            <Basket items={basketItems} onRemove={removeFromBasket} />
-            <Header />
-          </BasketProvider>
+    <AppContext.Provider value={{ items, basketItems, favorites }}>
+      <Router>
+        <div className="App clear">
+          <div className="wrapper">
+            <BasketProvider>
+              <Basket items={basketItems} onRemove={removeFromBasket} />
+              <Header />
+            </BasketProvider>
 
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Home
-                  items={items}
-                  searchValue={searchValue}
-                  setSearchValue={setSearchValue}
-                  addToBasket={addToBasket}
-                  addToFavorites={addToFavorites}
-                  onChangeSearchValue={onChangeSearchValue}
-                  basketItems={basketItems}
-                  isLoading={isLoading}
-                ></Home>
-              }
-            ></Route>
-            <Route
-              path="favorites"
-              element={
-                <Favorites
-                  items={favorites}
-                  addToFavorites={addToFavorites}
-                ></Favorites>
-              }
-            ></Route>
-          </Routes>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Home
+                    items={items}
+                    searchValue={searchValue}
+                    setSearchValue={setSearchValue}
+                    addToBasket={addToBasket}
+                    addToFavorites={addToFavorites}
+                    onChangeSearchValue={onChangeSearchValue}
+                    basketItems={basketItems}
+                    isLoading={isLoading}
+                  ></Home>
+                }
+              ></Route>
+              <Route
+                path="favorites"
+                element={
+                  <Favorites addToFavorites={addToFavorites}></Favorites>
+                }
+              ></Route>
+            </Routes>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </AppContext.Provider>
   );
 }
 
