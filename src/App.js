@@ -2,10 +2,11 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Basket from "./components/Basket";
-import { Route, Link, Routes, BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import React from "react";
 import { BasketProvider } from "./components/Basket/basketContext";
 import axios from "axios";
+
 
 function App() {
   const [items, setItems] = React.useState([]);
